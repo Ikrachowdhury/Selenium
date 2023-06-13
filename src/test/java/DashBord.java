@@ -52,9 +52,10 @@ public class DashBord extends loginPage{
     public void GeneralBranding(){
         try{
             GenerralSetting();
+            Scroll("hlogo");
             Fileupload("hlogo","D:\\SeleniumBasic\\src\\test\\java\\images.png");
             ClickButtonXpath("/html/body/main/section/div[2]/form/div/div/div[2]/div[1]/div/div[5]/button");
-            Thread.sleep(100);
+            Thread.sleep(500);
             Fileupload("favimage","D:\\SeleniumBasic\\src\\test\\java\\images.png");
             ClickButtonXpath("/html/body/main/section/div[2]/form/div/div/div[2]/div[1]/div/div[5]/button");
             Thread.sleep(100);
