@@ -1,5 +1,6 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -64,6 +65,32 @@ public class DashBord extends loginPage{
                     "Infromation has been updated successfully");
             Thread.sleep(1000);
 
+        }catch(Exception ex){
+            System.out.println(ex);
+
+        }
+
+    }
+
+    @Test
+    public void  Alert(){
+        try{
+            Login();
+            ClickButtonXpath("/html/body/main/header/ul/li[1]/div/button");
+            WebElement el[] = new WebElement[]{driver.findElement(By.xpath(" /html/body/main/header/ul/li[1]/div/ul/li"))};
+            for(int i=0;i<el.length;i++){
+                el[i].findElement(By.className("btn")).click();
+                Thread.sleep(100);
+            }
+            WebElement afterEl[] = new WebElement[]{driver.findElement(By.xpath(" /html/body/main/header/ul/li[1]/div/ul/li"))};
+            String arrayLength;
+            if(el.length<=0){
+             arrayLength="1";
+            }
+            else{
+                arrayLength="2";
+            }
+            CheckResultString(arrayLength,"1");
         }catch(Exception ex){
             System.out.println(ex);
 
