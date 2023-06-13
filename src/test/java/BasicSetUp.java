@@ -1,8 +1,11 @@
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -41,10 +44,14 @@ public class BasicSetUp {
 
      }
 
-     public void TakeInput(String id,String inputString){
+     public void TakeInputId(String id,String inputString){
         driver.findElement(By.id(id)).sendKeys(inputString);
 
      }
+    public void TakeInputName(String name,String inputString){
+        driver.findElement(By.name( name)).sendKeys(inputString);
+
+    }
      public String ClickButtonId  (String id){
             driver.findElement(By.id(id)).click();
             return driver.getTitle();
@@ -57,15 +64,30 @@ public class BasicSetUp {
         driver.findElement(By.linkText(link)).click();
         return driver.getTitle();
     }
+    public String ClickButtonXpath(String link){
+        driver.findElement(By.xpath(link)).click();
+        return driver.getTitle();
+    }
     public List Dropdown(String dropdown,String option){
         Select dropDownElement=new Select(driver.findElement(By.name(dropdown)));
         dropDownElement.selectByVisibleText(option);
         List<WebElement> selectElement =dropDownElement.getAllSelectedOptions();
         return selectElement.stream().map(e->e.getText()).collect(Collectors.toList());
 
+    }
 
+    public String AlertGetText(){
+        //driver.switchTo().alert().accept();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.alertIsPresent());
+        Alert alert = driver.switchTo().alert();
+        System.out.println(alert.getText());
+        alert.accept();
+        return alert.getText();
 
     }
+
      public  void CheckResultString(String ActualResult,String Expected){
          try{
              Assert.assertEquals(ActualResult,Expected);

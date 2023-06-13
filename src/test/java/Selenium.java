@@ -32,5 +32,6 @@ public class Selenium {
         String actualTitle = driver.getTitle();
         Assert.assertEquals(actualTitle, "Dashboard");
         Thread.sleep(1000);
+
     }
 }

@@ -11,8 +11,8 @@ public class loginPage extends BasicSetUp{
    // @Test(priority = 2)
     public void Login(){
      ClickLink("https://phptravels.net/admin/login.php");
-     TakeInput("email","admin@phptravels.com");
-     TakeInput("password","demoadmin");
+     TakeInputId("email","admin@phptravels.com");
+     TakeInputId("password","demoadmin");
      String ActualResult= ClickButtonId("submit");
     // CheckResult(ActualResult,"Dashboard");
 
