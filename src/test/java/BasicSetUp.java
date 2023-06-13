@@ -72,6 +72,11 @@ public class BasicSetUp {
         driver.findElement(By.xpath(link)).click();
         return driver.getTitle();
     }
+    public void Fileupload(String id,String absoulateFilePath){
+        driver.findElement(By.id(id)).sendKeys(absoulateFilePath);
+
+
+    }
     public List Dropdown(String dropdown,String option){
         Select dropDownElement=new Select(driver.findElement(By.name(dropdown)));
         dropDownElement.selectByVisibleText(option);
@@ -91,6 +96,9 @@ public class BasicSetUp {
         return alert.getText();
 
     }
+    public void Scroll(){
+
+    }
 
      public  void CheckResultString(String ActualResult,String Expected){
          try{
@@ -101,11 +109,11 @@ public class BasicSetUp {
 
          }
      }
-    public  void CheckResultInt(int ActualResult,int Expected){
-        try{
-            Assert.assertEquals(ActualResult,Expected);
+    public  void CheckResultInt(int ActualResult,int Expected) {
+        try {
+            Assert.assertEquals(ActualResult, Expected);
             Thread.sleep(1000);
-        }catch(Exception ex){
+        } catch (Exception ex) {
             System.out.println(ex);
 
         }
