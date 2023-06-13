@@ -45,11 +45,15 @@ public class BasicSetUp {
      }
 
      public void TakeInputId(String id,String inputString){
-        driver.findElement(By.id(id)).sendKeys(inputString);
+       WebElement element= driver.findElement(By.id(id));
+       element.clear();
+       element.sendKeys(inputString);
 
      }
     public void TakeInputName(String name,String inputString){
-        driver.findElement(By.name( name)).sendKeys(inputString);
+        WebElement element= driver.findElement(By.name(name));
+        element.clear();
+        element.sendKeys(inputString);
 
     }
      public String ClickButtonId  (String id){

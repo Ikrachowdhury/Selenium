@@ -1,4 +1,5 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -27,16 +28,17 @@ public class DashBord extends loginPage{
     public void MainSetting(){
         try{
             DropDown();
-            TakeInputName( "site_url","https://github.com/");
-            TakeInputName("license_key","Keynowkshi");
-            TakeInputId("offmsg","Nowkshis website");
+            TakeInputName( "business_name",Keys.BACK_SPACE+"Ikra chowdhury ");
+            TakeInputName( "site_url","  https://github.com/");
+            TakeInputName("license_key","Keynowkshii"+Keys.BACK_SPACE);
+            TakeInputId("offmsg", "Nowkshis website");
             TakeInputId("theme_color","#330000");
             ClickButtonXpath("/html/body/main/section/div[2]/form/div/div/div[1]/div[1]/div/div[11]/button");
             Thread.sleep(500);
             String  alertText=driver.findElement(By.className("vt-card")).getText();
-            System.out.println(alertText);
             CheckResultString(alertText,"Information Updated\n" +
                     "Infromation has been updated successfully");
+            Thread.sleep(1000);
 
         }catch(Exception ex){
             System.out.println(ex);
