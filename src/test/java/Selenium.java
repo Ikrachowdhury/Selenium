@@ -22,7 +22,7 @@ public class Selenium {
         driver.close();
     }
 
-    @Test(priority = 1)
+    @Test
     public void openBrowser() throws InterruptedException {
         driver.get("https://phptravels.net/admin/login.php");
         Thread.sleep(3000);
@@ -34,4 +34,5 @@ public class Selenium {
         Thread.sleep(1000);
 
     }
+
 }

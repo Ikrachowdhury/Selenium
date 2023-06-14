@@ -14,7 +14,7 @@ import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class BasicSetUp {
+public class BaseSetUp {
     public WebDriver driver;
 
     @BeforeTest
@@ -57,10 +57,7 @@ public class BasicSetUp {
             driver.findElement(By.id(id)).click();
             return driver.getTitle();
      }
-    public String ClickButtonClass  (String classname){
-        driver.findElement(By.className(classname)).click();
-        return driver.getTitle();
-    }
+
     public String ClickButtonLink(String link){
         driver.findElement(By.linkText(link)).click();
         return driver.getTitle();
@@ -68,6 +65,23 @@ public class BasicSetUp {
     public String ClickButtonXpath(String link){
         driver.findElement(By.xpath(link)).click();
         return driver.getTitle();
+    }
+    public String ClickButtonCss(String css){
+        driver.findElement(By.cssSelector(css));
+        return driver.getTitle();
+    }
+
+    public WebElement[] GetElementsByClass(String classname){
+        List<WebElement> elements = driver.findElements(By.className(classname));
+        WebElement[] elementArray = new WebElement[elements.size()];
+        elements.toArray(elementArray);
+
+        return elementArray;
+
+    }
+    public String GetELementByXpath(String xpath){
+        String tittle = driver.findElement(By.xpath(xpath)).getText();
+        return tittle;
     }
     public void Fileupload(String id,String absoulateFilePath){
         driver.findElement(By.id(id)).sendKeys(absoulateFilePath);
@@ -118,6 +132,9 @@ public class BasicSetUp {
 
         }
     }
+    public WindowManger GetWindowManager(){
 
+        return new WindowManger(driver);
+    }
 
 }
