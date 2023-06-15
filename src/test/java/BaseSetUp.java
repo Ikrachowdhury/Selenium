@@ -4,10 +4,16 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import org.testng.xml.XmlTest;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.time.Duration;
 
 import java.time.Duration;
@@ -133,8 +139,20 @@ public class BaseSetUp {
         }
     }
     public WindowManger GetWindowManager(){
-
         return new WindowManger(driver);
     }
-
+    @AfterMethod
+    public void RecordFailure(ITestResult result){
+        if(ITestResult.FAILURE==result.getStatus()){
+            var camera =(TakesScreenshot)driver;
+            File screenshot=camera.getScreenshotAs(OutputType.FILE);
+            File destination = new File("D:\\SeleniumBasic\\src\\test\\screenshot\\"+result.getName()+".png");
+            try{
+                Files.move(screenshot.toPath(), destination.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            }catch(Exception ex){
+                System.out.println(ex);
+            }
+        }
+        // System.out.println("Screenshot taken: "+screenshot.getAbsolutePath();
+    }
 }

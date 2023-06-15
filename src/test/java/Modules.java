@@ -79,8 +79,10 @@ public class Modules extends DashBord{
     public void ModuleStatusTest(){
         try{
           Clickelement(2,"clickStatus");
-          AlertSuccess();
           Thread.sleep(1000);
+          AlertSuccess();
+            Thread.sleep(1000);
+
           //  Clickelement(2,"clickStatusAll");
 
         }catch (Exception ex){
