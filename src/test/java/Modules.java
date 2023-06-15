@@ -3,6 +3,8 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import java.util.Arrays;
+
 public class Modules extends DashBord{
     int lenght;
     String pageTittleExpected;
@@ -26,7 +28,6 @@ public class Modules extends DashBord{
     public void Clickelement(int elementNumber,String type){
 
         try{
-            String pageTittleExpected;
             WebElement array[]=  GetElementsByClass("modules_sort");
             lenght=array.length;
             for (int i = 0; i <lenght; i++) {
@@ -35,9 +36,11 @@ public class Modules extends DashBord{
 //            System.out.println(tag);
                 if (type.equals("clickSetting")) {
                     if (lenght > elementNumber && i == elementNumber) {
-                        array[i].findElement(By.className("btn-danger")).click();
-                        pageTittleExpected= array[i].findElement(By.className("text-capitalize")).getText();
+                       String Text= array[i].findElement(By.xpath("//*[@id=\"SORT\"]/tr[3]/th[3]")).getText();
+                       String aarray[]=Text.split(" ");
+                        pageTittleExpected=aarray[0];
                         System.out.println(pageTittleExpected);
+                        array[i].findElement(By.className("btn-danger")).click();
                         // pageTittle=driver.getTitle();
                     }
                 } else if (type.equals("clickStatus")) {
@@ -62,7 +65,6 @@ public class Modules extends DashBord{
     public void ModuleSettingTest(){
       try{
           Clickelement(2,"clickSetting");
-          System.out.println(pageTittleExpected+"lol");
           String pageTittleActual=GetELementByXpath("/html/body/main/section/div[1]/div/div[1]/p");
           System.out.println(pageTittleActual);
           CheckResultString(pageTittleActual,pageTittleExpected);
