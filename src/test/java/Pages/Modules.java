@@ -1,13 +1,23 @@
 package Pages;
 import Util.*;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import java.util.Arrays;
 
-public class Modules {
+public class Modules  {
+    public Modules(WebDriver driver) {
+        PageFactory.initElements(driver, this);
+    }
+    @FindBy(id = "email")
+    WebElement  EmailField;
+    @FindBy(id = "password")
+    WebElement PasswordField;
+    @FindBy(id = "submit")
+    WebElement SubmitButton;
     int lenght;
     String pageTittleExpected;
     DashBord dashBordpage= new DashBord();

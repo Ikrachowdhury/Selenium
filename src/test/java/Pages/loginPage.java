@@ -1,25 +1,41 @@
 package Pages;
 import Util.*;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
-public class loginPage extends BaseSetUp{
+public class loginPage  {
+    public loginPage(WebDriver driver) {
+        PageFactory.initElements(driver, this);
+    }
+
+    @FindBy(id = "email")
+    WebElement  EmailField;
+    @FindBy(id = "password")
+    WebElement PasswordField;
+    @FindBy(id = "submit")
+    WebElement SubmitButton;
 
     public void GoToLoginPage(String link){
-        ClickLink("https://phptravels.net/admin/login.php");
-
+        driver.get(link);
+        try {
+            Thread.sleep(50);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
     public void SetEmail(String email){
-        TakeInputId("email",email);
-        ClickLink(email);
+        EmailField.sendKeys(email);
   }
   public void SetPassWord(String password){
-      TakeInputId("password",password);
+      PasswordField.sendKeys(password);
   }
   public String ClickSubmitButton(){
-       return ClickButtonId("submit");
+      SubmitButton.click();
   }
-  public void TestAction(String ActualResult ){
-      CheckResultString(ActualResult,"Dashboard");
-  }
+
+
     public void  Login(){
         GoToLoginPage("https://phptravels.net/admin/login.php");
         SetEmail("admin@phptravels.com");
