@@ -4,7 +4,7 @@ import Pages.GeneralSettingPage;
 
 public class GeneralSettingPageTest {
     GeneralSettingPage generalSettingPage=new GeneralSettingPage();
-    public void MainSettingTest{
+    public void MainSettingTest(){
         generalSettingPage.SetBusinsessName();
         generalSettingPage.SetDomainNmae();
         generalSettingPage.SetLicenceKey();

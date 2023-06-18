@@ -8,15 +8,9 @@ import org.testng.annotations.Test;
 
 public class DashBord  extends loginPage {
 
-    public DashBord() {
-        super();
-        this.driver = driver;
-    }
-    public void  Login(){
-        GoToLoginPage("https://phptravels.net/admin/login.php");
-        SetEmail("admin@phptravels.com");
-        SetPassWord("demoadmin");
-        ClickSubmitButton();
+
+    public void EndTest(){
+        AfterTest();
     }
     String pageTittle;
     public void ClickAlert(){

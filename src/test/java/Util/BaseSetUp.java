@@ -11,6 +11,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import org.testng.xml.XmlTest;
+import org.openqa.selenium.Keys;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -23,22 +24,19 @@ import java.util.stream.Collectors;
 
 public class BaseSetUp {
     public WebDriver driver;
-    public BaseSetUp(){
-        driver= new ChromeDriver();
-    }
 
-    @BeforeTest
+
     public void  OpenChrome(){
-       //  driver= new ChromeDriver();
+         driver= new ChromeDriver();
          driver.manage().window().maximize();
          driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 
 
      }
-    @AfterTest
      public void AfterTest(){
         driver.close();
      }
+
      public void ClickLink(String link){
         try {
             driver.get(link);

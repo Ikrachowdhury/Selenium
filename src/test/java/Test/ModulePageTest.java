@@ -1,6 +1,7 @@
 package Test;
 
 import Pages.Modules;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -20,5 +21,9 @@ public class ModulePageTest {
         modulepage.GotoModulePage();
         modulepage.SetStatus(2);
         //modulepage.SetStatusAll();
+    }
+    @AfterTest
+    public void EndTest(){
+        modulepage.EndTest();
     }
 }

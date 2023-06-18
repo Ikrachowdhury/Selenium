@@ -11,9 +11,11 @@ public class Modules {
     int lenght;
     String pageTittleExpected;
     DashBord dashBordpage= new DashBord();
+
     public void  Login(){
         dashBordpage.Login();
     }
+    public void EndTest(){dashBordpage.EndTest();}
     public void GotoModulePage(){
         dashBordpage.ClickModule();
     }
