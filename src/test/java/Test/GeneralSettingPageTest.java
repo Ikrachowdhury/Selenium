@@ -3,6 +3,7 @@ package Test;
 import Pages.*;
 import Util.SetUp;
 import Util.TestAction;
+import Util.WindowManger;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -11,6 +12,7 @@ public class GeneralSettingPageTest extends SetUp {
     TestAction test;
     DashBord dashBord;
     GeneralSettingPage generalSettingPage;
+    WindowManger windowManger;
     String ActualResult;
     @BeforeTest
     public void PageObjects(){
@@ -18,6 +20,8 @@ public class GeneralSettingPageTest extends SetUp {
         test=new TestAction();
         dashBord=new DashBord(driver);
         generalSettingPage=new   GeneralSettingPage(driver);
+        windowManger=new WindowManger(driver);
+
     }
     @Test
     public void MainSettingTest(){
@@ -34,6 +38,7 @@ public class GeneralSettingPageTest extends SetUp {
         generalSettingPage.ClickUpdateButton();
         ActualResult= generalSettingPage.AlertCheck();
         test.CheckResultString(ActualResult,   "Information Updated\n" + "Infromation has been updated successfully");
+        windowManger.GoBack();
 
     }
     @Test
