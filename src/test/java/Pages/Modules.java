@@ -47,7 +47,7 @@ public class Modules  {
                         String Text= array[i].findElement(By.xpath("//*[@id=\"SORT\"]/tr[3]/th[3]")).getText();
                         String aarray[]=Text.split(" ");
                         pageTittleExpected=aarray[0];
-                        System.out.println(pageTittleExpected);
+                       // System.out.println(pageTittleExpected);
                         array[i].findElement(By.className("btn-danger")).click();
                         // pageTittle=driver.getTitle();
                     }

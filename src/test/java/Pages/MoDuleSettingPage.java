@@ -1,14 +1,22 @@
 package Pages;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MoDuleSettingPage {
     WebDriver driver;
     public MoDuleSettingPage(WebDriver driver){
         PageFactory.initElements(driver,this);
+        this.driver=driver;
     }
     @FindBy(xpath = "/html/body/main/section/div[1]/div/div[1]/p")
     WebElement PageTittle;
@@ -37,4 +45,14 @@ public class MoDuleSettingPage {
     public void ClickBacktButton(){
          BackButton.click();
     }
+    public void AlertBox(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.alertIsPresent());
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
+        driver.switchTo().parentFrame();
+
+        //return alert.getText();
+    }
 }
+
