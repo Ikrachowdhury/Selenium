@@ -1,13 +1,15 @@
 package Util;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.time.Duration;
 
 public class SetUp {
@@ -23,5 +25,18 @@ public class SetUp {
         driver.close();
     }
 
-
+    @AfterMethod
+    public void RecordFailure(ITestResult result){
+        if(ITestResult.FAILURE==result.getStatus()){
+            var camera =(TakesScreenshot)driver;
+            File screenshot=camera.getScreenshotAs(OutputType.FILE);
+            File destination = new File("D:\\SeleniumBasic\\src\\test\\screenshot\\"+result.getName()+".png");
+            try{
+                Files.move(screenshot.toPath(), destination.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            }catch(Exception ex){
+                System.out.println(ex);
+            }
+        }
+        // System.out.println("Screenshot taken: "+screenshot.getAbsolutePath();
+    }
 }
