@@ -1,129 +1,86 @@
-//package Pages;
-//import Util.*;
-//import org.openqa.selenium.By;
-//import org.openqa.selenium.WebDriver;
-//import org.openqa.selenium.WebElement;
-//import org.openqa.selenium.support.FindBy;
-//import org.openqa.selenium.support.PageFactory;
-//
-//import java.util.Arrays;
-//
-//public class Modules  {
-//    public Modules(WebDriver driver) {
-//        PageFactory.initElements(driver, this);
-//    }
-//    @FindBy(id = "email")
-//    WebElement  EmailField;
-//    @FindBy(id = "password")
-//    WebElement PasswordField;
-//    @FindBy(id = "submit")
-//    WebElement SubmitButton;
-//    int lenght;
-//    String pageTittleExpected;
-//    DashBord dashBordpage= new DashBord();
-//
-//    public void  Login(){
-//       // dashBordpage.Login();
-//    }
-//    public void EndTest(){dashBordpage.EndTest();}
-//    public void GotoModulePage(){
-//        dashBordpage.ClickModule();
-//    }
-//    public void  ClickSetting(int noOfSetting){
-//        Clickelement(noOfSetting,"clickSetting");
-//    }
-//    public void SetStatus(int noOfSetting){
-//        Clickelement(2,"clickStatus");
-//    }
-//    public void SetStatusAll(){
-//        Clickelement(2,"clickStatusAll");
-//    }
-//    public void Clickelement(int elementNumber,String
-//            type){
-//
-//        try{
-//            WebElement array[]=  dashBordpage.GetElementsByClass("modules_sort");
-//            lenght=array.length;
-//            for (int i = 0; i <lenght; i++) {
-//
-////            String tag=array[i].findElement(By.className("fw-light")).getText();
-////            System.out.println(tag);
-//                if (type.equals("clickSetting")) {
-//                    if (lenght > elementNumber && i == elementNumber) {
-//                        String Text= array[i].findElement(By.xpath("//*[@id=\"SORT\"]/tr[3]/th[3]")).getText();
-//                        String aarray[]=Text.split(" ");
-//                        pageTittleExpected=aarray[0];
-//                        System.out.println(pageTittleExpected);
-//                        array[i].findElement(By.className("btn-danger")).click();
-//                        // pageTittle=driver.getTitle();
-//                    }
-//                } else if (type.equals("clickStatus")) {
-//                    if (lenght > elementNumber && i == elementNumber) {
-//                        array[i].findElement(By.className("form-check-input")).click();
-//                    }
-//                } else if (type.equals("clickStatusAll")) {
-//                    array[i].findElement(By.className("form-check-input")).click();
-//                    Thread.sleep(100);
-//                }
-//                Thread.sleep(100);
-////                array[i].findElement(By.className("fw-light")).getText();
-////               Thread.sleep(100);
-//            }
-//
-//
-//        }catch (Exception ex){
-//            System.out.println(ex);
-//        }
-//    }
-//
-////  @BeforeTest
-////    public void ModulePageTest(){
-////        ClickModule();
-////        CheckResultString(pageTittle,"Modules");
-////    }
-////    public void AlertSuccess() {
-////
-////        String alertText = driver.findElement(By.className("success")).getText();
-////        System.out.println(alertText);
-////       CheckResultString(alertText, "Module Updated\n" +
-////               "Module status updated successfully");
-////    }
-////    public int ArrayOfElements(){
-////        WebElement array[]=  GetElementsByClass("modules_sort");
-////        lenght=array.length;
-////        return  lenght;
-////    }
-////
-////    @Test
-////    public void ModuleSettingTest(){
-////      try{
-////          Clickelement(2,"clickSetting");
-////          String pageTittleActual=GetELementByXpath("/html/body/main/section/div[1]/div/div[1]/p");
-////          System.out.println(pageTittleActual);
-////          CheckResultString(pageTittleActual,pageTittleExpected);
-////          Thread.sleep(1000);
-////          GetWindowManager().GoBack();
-////          Thread.sleep(1000);
-////
-////      }catch (Exception ex){
-////          System.out.println(ex);
-////      }
-////
-////    }
-////    @Test
-////    public void ModuleStatusTest(){
-////        try{
-////          Clickelement(2,"clickStatus");
-////          Thread.sleep(1000);
-////          AlertSuccess();
-////            Thread.sleep(1000);
-////
-////          //  Clickelement(2,"clickStatusAll");
-////
-////        }catch (Exception ex){
-////            System.out.println(ex);
-////        }
-////
-////    }
-//}
-//
+package Pages;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import java.util.List;
+
+public class Modules  {
+    WebDriver driver;
+    int lenght;
+    public String pageTittleExpected;
+    public Modules(WebDriver driver) {
+        PageFactory.initElements(driver, this);
+        this.driver=driver;
+    }
+    @FindAll({
+            @FindBy(className ="modules_sort")
+    })
+    List<WebElement> Table;
+    @FindBy(className = "success")
+    WebElement AlertBox;
+
+    public void  ClickSetting(int noOfSetting){
+        Clickelement(noOfSetting,"clickSetting");
+    }
+    public void SetStatus(int noOfSetting){
+        Clickelement(2,"clickStatus");
+    }
+    public void SetStatusAll(){
+        Clickelement(2,"clickStatusAll");
+    }
+    public void Clickelement(int elementNumber,String
+            type){
+
+        try{
+            WebElement array[]= ArrayOfTableElements();
+            lenght=array.length;
+            for (int i = 0; i <lenght; i++) {
+
+//            String tag=array[i].findElement(By.className("fw-light")).getText();
+//            System.out.println(tag);
+                if (type.equals("clickSetting")) {
+                    if (lenght > elementNumber && i == elementNumber) {
+                        String Text= array[i].findElement(By.xpath("//*[@id=\"SORT\"]/tr[3]/th[3]")).getText();
+                        String aarray[]=Text.split(" ");
+                        pageTittleExpected=aarray[0];
+                        System.out.println(pageTittleExpected);
+                        array[i].findElement(By.className("btn-danger")).click();
+                        // pageTittle=driver.getTitle();
+                    }
+                } else if (type.equals("clickStatus")) {
+                    if (lenght > elementNumber && i == elementNumber) {
+                        array[i].findElement(By.className("form-check-input")).click();
+                    }
+                } else if (type.equals("clickStatusAll")) {
+                    array[i].findElement(By.className("form-check-input")).click();
+                    Thread.sleep(100);
+                }
+                Thread.sleep(100);
+//                array[i].findElement(By.className("fw-light")).getText();
+//               Thread.sleep(100);
+            }
+
+
+        }catch (Exception ex){
+            System.out.println(ex);
+        }
+    }
+    public WebElement[] ArrayOfTableElements(){
+        List<WebElement> elements = Table;
+        WebElement[] elementArray = new WebElement[elements.size()];
+        elements.toArray(elementArray);
+
+        return elementArray;
+
+    }
+        public String AlertCheck() {
+        String alertText = AlertBox.getText();
+        return alertText;
+    }
+
+}
+
