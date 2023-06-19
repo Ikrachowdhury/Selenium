@@ -6,7 +6,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class loginPage  {
+    WebDriver driver;
     public loginPage(WebDriver driver) {
+         this.driver=driver;
         PageFactory.initElements(driver, this);
     }
 
@@ -31,15 +33,14 @@ public class loginPage  {
   public void SetPassWord(String password){
       PasswordField.sendKeys(password);
   }
-  public String ClickSubmitButton(){
-      SubmitButton.click();
-  }
+  public  void ClickSubmitButton(){
+      SubmitButton.click();}
 
 
-    public void  Login(){
+    public void  Login(String email,String password){
         GoToLoginPage("https://phptravels.net/admin/login.php");
-        SetEmail("admin@phptravels.com");
-        SetPassWord("demoadmin");
+        SetEmail(email);
+        SetPassWord(password);
         ClickSubmitButton();
     }
 }
